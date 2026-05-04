@@ -1,0 +1,23 @@
+- name: Install python3.13 and pip
+  ansible.builtin.apt:
+    name:
+      - python3.13
+      - python3.13-venv
+      - python3-pip
+      - pipx
+    state: present
+
+- name: Ensure pipx path is set
+  become_user: "{{ ansible_user }}"
+  become: true
+  ansible.builtin.command: pipx ensurepath
+  changed_when: false
+
+- name: Install python tools
+  become: true
+  become_user: "{{ ansible_user }}"
+  ansible.builtin.command: pipx install {{ item }}
+  loop: "{{ python_tools }}"
+  register: python_result
+  changed_when: "'already seems to be installed' not in python_result.stdout"
+  failed_when: python_result.rc != 0 and 'already seems to be installed' not in python_result.stdout
