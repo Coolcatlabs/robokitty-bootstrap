@@ -1,0 +1,29 @@
+- name: Install shell utilities
+  ansible.builtin.apt:
+    name: "{{ shell_packages }}"
+    state: present
+
+- name: Download starship installer
+  ansible.builtin.get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship-install.sh
+    mode: '0755'
+
+- name: Install starship
+  ansible.builtin.command: /tmp/starship-install.sh --yes
+  args:
+    creates: /usr/local/bin/starship
+  become: true
+  changed_when: true
+
+- name: Copy dotfiles
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "/home/{{ ansible_user }}/"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+    directory_mode: '0755'
+  loop:
+    - .config/
+    - bash/

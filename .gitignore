@@ -1,0 +1,26 @@
+# Ansible
+*.retry
+.ansible/
+ansible.log
+
+# Sensitive vars (use ansible-vault instead)
+group_vars/all/vault.yml
+host_vars/*/vault.yml
+*vault*
+*.secret
+secrets.yml
+
+# Environment
+.env
+.envrc
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

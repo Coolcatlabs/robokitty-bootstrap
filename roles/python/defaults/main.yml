@@ -1,0 +1,5 @@
+python_tools:
+  - ipdb
+  - virtualenv
+  - ipython
+  - tox

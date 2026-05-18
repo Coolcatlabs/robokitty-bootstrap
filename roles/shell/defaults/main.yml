@@ -1,0 +1,8 @@
+shell_packages:
+  - tree
+  - vim
+  - git
+  - htop
+  - bat
+  - eza
+  - fastfetch

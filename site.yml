@@ -1,0 +1,8 @@
+- name: Bootstrap Raspberry Pi
+  hosts: raspberrypi
+  become: true
+
+  roles:
+    - common
+    - python
+    - shell

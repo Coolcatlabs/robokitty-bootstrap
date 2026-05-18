@@ -1,0 +1,4 @@
+# Starship prompt
+eval "$(starship init bash)"
+
+fastfetch -l raspbian
